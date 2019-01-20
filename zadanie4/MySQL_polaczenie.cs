@@ -192,5 +192,76 @@ namespace zadanie4
             dane = komenda.ExecuteReader();
             connection.Close();
         }
+
+        public void usun_wizyte(string id_wizyty)
+        {
+            string zapytanie = "delete from wizyta where id_wizyty = " + id_wizyty + ";";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            connection.Open();
+            dane = komenda.ExecuteReader();
+            connection.Close();
+        }
+
+        public void edytuj_wizyte(string id_wizyty, string nowa_dana, int wybor)
+        {
+            string zapytanie;
+            if (wybor == 1)
+            {
+                zapytanie = "update wizyta set id_pacjenta = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
+                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                MySqlDataReader dane;
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                connection.Close();
+            }
+            if (wybor == 2)
+            {
+                zapytanie = "update wizyta set id_lekarza = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
+                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                MySqlDataReader dane;
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                connection.Close();
+            }
+            if (wybor == 3)
+            {
+                zapytanie = "select hour(data_wizyty) from wizyta where id_wizyty = " + id_wizyty + ";";
+                string godzina;
+                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                MySqlDataReader dane;
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                dane.Read();
+                godzina = dane.GetString(0);
+                connection.Close();
+
+                nowa_dana = nowa_dana + " " + godzina + ":00:00";
+                zapytanie = "update wizyta set data_wizyty = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
+                komenda = new MySqlCommand(zapytanie, connection);
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                connection.Close();
+            }
+            if (wybor == 4)
+            {
+                zapytanie = "select date_format(data_wizyty, '%Y-%m-%d') from wizyta where id_wizyty = " + id_wizyty + ";";
+                string data;
+                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                MySqlDataReader dane;
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                dane.Read();
+                data = dane.GetString(0);
+                connection.Close();
+
+                nowa_dana = data + " " + nowa_dana;
+                zapytanie = "update wizyta set data_wizyty = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
+                komenda = new MySqlCommand(zapytanie, connection);
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                connection.Close();
+            }
+        }
     }
 }

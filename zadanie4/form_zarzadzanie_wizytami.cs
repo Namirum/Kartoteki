@@ -22,5 +22,17 @@ namespace zadanie4
             form_dodaj_wizyte dodaj = new form_dodaj_wizyte();
             dodaj.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            form_usun_wizyte usun = new form_usun_wizyte();
+            usun.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            form_edytuj_wizyte edytuj = new form_edytuj_wizyte();
+            edytuj.ShowDialog();
+        }
     }
 }

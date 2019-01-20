@@ -11,11 +11,11 @@ using MySql.Data.MySqlClient;
 
 namespace zadanie4
 {
-    public partial class Edytuj_konto : Form
+    public partial class form_edytuj_wizyte : Form
     {
         int wybor;
 
-        public Edytuj_konto()
+        public form_edytuj_wizyte()
         {
             InitializeComponent();
             wypelnij_tabele();
@@ -39,9 +39,8 @@ namespace zadanie4
 
             connection = new MySqlConnection(connectionString);
             connection.Open();
-            string zapytanie = "select * from pacjent;";
+            string zapytanie = "select * from wizyta;";
             MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
-            //MySqlDataReader dane = komenda.ExecuteReader();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             BindingSource zrodlo = new BindingSource();
             adapter.SelectCommand = komenda;
@@ -54,7 +53,7 @@ namespace zadanie4
             connection.Close();
         }
 
-        public void wypelnij_tabele(string id_pacjenta)
+        public void wypelnij_tabele(string id_wizyty)
         {
             MySqlConnection connection;
             string server;
@@ -72,7 +71,7 @@ namespace zadanie4
 
             connection = new MySqlConnection(connectionString);
             connection.Open();
-            string zapytanie = "select * from pacjent where id_pacjenta = " + id_pacjenta + ";";
+            string zapytanie = "select * from wizyta where id_wizyty = " + id_wizyty + ";";
             MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
             //MySqlDataReader dane = komenda.ExecuteReader();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -87,14 +86,10 @@ namespace zadanie4
             connection.Close();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text == "")
+            if (textBox1.Text == "")
             {
                 wypelnij_tabele();
                 label2.Visible = false;
@@ -114,54 +109,59 @@ namespace zadanie4
                 button3.Visible = true;
                 button4.Visible = true;
                 button5.Visible = true;
-            }   
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
             button6.Visible = true;
-            label3.Text = "Wprowadz nowy login";
+            label3.Text = "Wprowadz nowe id pacjenta";
             textBox2.Visible = true;
             wybor = 1;
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
             button6.Visible = true;
-            label3.Text = "Wprowadz nowe haslo";
+            label3.Text = "Wprowadz nowe id lekarza";
             textBox2.Visible = true;
             wybor = 2;
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
             button6.Visible = true;
-            label3.Text = "Wprowadz nowe imie";
+            label3.Text = "Wprowadz nowa date (rrrr-mm-dd)";
             textBox2.Visible = true;
             wybor = 3;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text != "")
+            {
+                string nowa_dana = textBox2.Text;
+                string id_wizyty = textBox1.Text;
+                MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+                polaczenie.edytuj_wizyte(id_wizyty, nowa_dana, wybor);
+            }
         }
 
         private void button5_Click_1(object sender, EventArgs e)
         {
             label3.Visible = true;
             button6.Visible = true;
-            label3.Text = "Wprowadz nowe nazwisko";
+            label3.Text = "Wprowadz nowa godzine (hh:mm)";
             textBox2.Visible = true;
             wybor = 4;
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            if(textBox2.Text != "")
-            {
-                string nowa_dana = textBox2.Text;
-                string id_pacjenta = textBox1.Text;
-                MySQL_polaczenie polaczenie = new MySQL_polaczenie();
-                polaczenie.edytuj_konto_pacjenta(nowa_dana, id_pacjenta, wybor);
-            }     
         }
     }
 }
