@@ -102,6 +102,7 @@ namespace zadanie4
             string zapytanie;
             if (wybor == 1)
             {
+                zapytanie = "update pacjent set login = '" + nowa_dana + "' where id_pacjenta = " + id_pacjenta + ";";
                 MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
                 MySqlDataReader dane;
                 connection.Open();
@@ -110,6 +111,7 @@ namespace zadanie4
             }
             if(wybor == 2)
             {
+                zapytanie = "update pacjent set haslo = '" + nowa_dana + "' where id_pacjenta = " + id_pacjenta + ";";
                 MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
                 MySqlDataReader dane;
                 connection.Open();
@@ -118,6 +120,7 @@ namespace zadanie4
             }
             if (wybor == 3)
             {
+                zapytanie = "update pacjent set imie = '" + nowa_dana + "' where id_pacjenta = " + id_pacjenta + ";";
                 MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
                 MySqlDataReader dane;
                 connection.Open();
@@ -126,6 +129,7 @@ namespace zadanie4
             }
             if (wybor == 4)
             {
+                zapytanie = "update pacjent set nazwisko = '" + nowa_dana + "' where id_pacjenta = " + id_pacjenta + ";";
                 MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
                 MySqlDataReader dane;
                 connection.Open();

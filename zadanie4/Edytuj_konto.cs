@@ -104,6 +104,7 @@ namespace zadanie4
                 button4.Visible = false;
                 button5.Visible = false;
                 textBox2.Visible = false;
+                button6.Visible = false;
             }
             else
             {
@@ -119,6 +120,7 @@ namespace zadanie4
         private void button2_Click(object sender, EventArgs e)
         {
             label3.Visible = true;
+            button6.Visible = true;
             label3.Text = "Wprowadz nowy login";
             textBox2.Visible = true;
             wybor = 1;
@@ -127,6 +129,7 @@ namespace zadanie4
         private void button3_Click_1(object sender, EventArgs e)
         {
             label3.Visible = true;
+            button6.Visible = true;
             label3.Text = "Wprowadz nowe haslo";
             textBox2.Visible = true;
             wybor = 2;
@@ -135,6 +138,7 @@ namespace zadanie4
         private void button4_Click_1(object sender, EventArgs e)
         {
             label3.Visible = true;
+            button6.Visible = true;
             label3.Text = "Wprowadz nowe imie";
             textBox2.Visible = true;
             wybor = 3;
@@ -143,6 +147,7 @@ namespace zadanie4
         private void button5_Click_1(object sender, EventArgs e)
         {
             label3.Visible = true;
+            button6.Visible = true;
             label3.Text = "Wprowadz nowe nazwisko";
             textBox2.Visible = true;
             wybor = 4;
@@ -150,9 +155,13 @@ namespace zadanie4
 
         private void button6_Click(object sender, EventArgs e)
         {
-            string nowa_dana = textBox2.Text;
-            string id_pacjenta = textBox1.Text;
-
+            if(textBox2.Text != "")
+            {
+                string nowa_dana = textBox2.Text;
+                string id_pacjenta = textBox1.Text;
+                MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+                polaczenie.edytuj_konto_pacjenta(nowa_dana, id_pacjenta, wybor);
+            }     
         }
     }
 }
