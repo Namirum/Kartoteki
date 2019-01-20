@@ -16,7 +16,7 @@ namespace zadanie4
         private string database;
         private string uid;
         private string password;
-        
+
         public MySQL_polaczenie()
         {
             Initialize();
@@ -24,7 +24,7 @@ namespace zadanie4
 
         public void Initialize()
         {
-            
+
             server = "localhost";
             database = "kartoteki";
             uid = "root";
@@ -34,7 +34,7 @@ namespace zadanie4
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             connection = new MySqlConnection(connectionString);
-            
+
         }
 
         public int zaloguj_administratora(string login, string haslo)
@@ -44,18 +44,18 @@ namespace zadanie4
             MySqlDataReader dane;
             //MySqlDataAdapter adapter = new MySqlDataAdapter();
             int spr = 0;
-            
+
             List<string[]> lista = new List<string[]>();
 
             connection.Open();
-            
+
             dane = komenda.ExecuteReader();
             int i = 0;
-            while(dane.Read())
+            while (dane.Read())
             {
                 string[] wiersz = { dane.GetInt32(0).ToString(), dane.GetString(1), dane.GetString(2) };
                 lista.Add(wiersz);
-                if(lista[i][1] == login && lista[i][2] == haslo)
+                if (lista[i][1] == login && lista[i][2] == haslo)
                 {
                     spr = 1;
                     break;
@@ -67,7 +67,7 @@ namespace zadanie4
                 i++;
             }
             connection.Close();
-            if(spr == 1)
+            if (spr == 1)
             {
                 return 0;
             }
@@ -109,7 +109,7 @@ namespace zadanie4
                 dane = komenda.ExecuteReader();
                 connection.Close();
             }
-            if(wybor == 2)
+            if (wybor == 2)
             {
                 zapytanie = "update pacjent set haslo = '" + nowa_dana + "' where id_pacjenta = " + id_pacjenta + ";";
                 MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
@@ -156,12 +156,12 @@ namespace zadanie4
             {
                 string[] wiersz = { dane.GetString(0), dane.GetString(1) };
                 lista.Add(wiersz);
-                if (lista[i][1] == (data + " " + godzina+":00"))
+                if (lista[i][1] == (data + " " + godzina + ":00"))
                 {
                     spr = 1;
                     break;
                 }
-            
+
                 //Console.WriteLine("{0} {1}", lista[i][0], lista[i][1]);
                 //Console.WriteLine(data + " " + godzina + ":00");
                 i++;
@@ -180,6 +180,17 @@ namespace zadanie4
         public int czy_login_dostepny()
         {
             return 0;
+        }
+
+
+        public void dodaj_wizyte(string id_pacjenta, string id_lekarza, string data_wizyty)
+        {
+            string zapytanie = "insert into wizyta (id_pacjenta, id_lekarza, data_rejestracji, data_wizyty) values (" + id_pacjenta + ", " + id_lekarza + ", sysdate(), '" + data_wizyty + "');";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            connection.Open();
+            dane = komenda.ExecuteReader();
+            connection.Close();
         }
     }
 }

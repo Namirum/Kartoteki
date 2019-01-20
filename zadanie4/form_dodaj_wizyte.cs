@@ -92,10 +92,15 @@ namespace zadanie4
             string password;
             int godzina = 8;
             server = "localhost";
-            string rok = "" + data[6] + data[7] + data[8] + data[9];
-            string miesiac = "" + data[3] + data[4];
-            string dzien = "" + data[0] + data[1];
-            string nowa_data = rok + "-" + miesiac + "-" + dzien;
+            //string rok = "" + data[6] + data[7] + data[8] + data[9];
+            //string miesiac = "" + data[3] + data[4];
+           // string dzien = "" + data[0] + data[1];
+            //string nowa_data = rok + "-" + miesiac + "-" + dzien;
+
+            Func<string> zamien = () => { return (data[6].ToString() + data[7].ToString() + data[8].ToString() + data[9].ToString() + "-" + data[3].ToString() + data[4].ToString() + "-" + data[0].ToString() + data[1].ToString()); };
+            
+            string nowa_data = zamien();
+            Console.WriteLine(nowa_data);
             database = "kartoteki";
             uid = "root";
             password = "Szkarlat666";
@@ -105,44 +110,53 @@ namespace zadanie4
 
             connection = new MySqlConnection(connectionString);
             connection.Open();
-            string zapytanie = "select hour(data_wizyty) from wizyta where id_lekarza = "+ id_lekarza + " and date(data_wizyty) = '" + data + "';";
+            string zapytanie = "select hour(data_wizyty) from wizyta where id_lekarza = "+ id_lekarza + " and date(data_wizyty) = '" + nowa_data + "';";
             MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
             MySqlDataReader dane;
             dane = komenda.ExecuteReader();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            BindingSource zrodlo = new BindingSource();
-            //adapter.SelectCommand = komenda;
-            DataTable tabela = new DataTable();
+
+            int i = 0;
             List<string[]> lista = new List<string[]>();
             while (dane.Read())
             {
-                if(dane.GetString(0) == (godzina.ToString() + ":00:00"))
-                {
+                string[] wiersz = { dane.GetInt32(0).ToString() };
+                lista.Add(wiersz);
+                i++;
+            }
 
-                }
-                else
+            DataTable tabela = new DataTable();
+            DataColumn kolumna = new DataColumn();
+            kolumna.DataType = System.Type.GetType("System.String");
+            kolumna.ColumnName = "dostepna godzina";
+            tabela.Columns.Add(kolumna);
+
+            DataRow w;
+
+            int spr_h;
+            for(int k=0; k<10; k++)
+            {
+                spr_h = 0;
+                for (int j = 0; j < i; j++)
                 {
-                    string[] wiersz = { dane.GetString(0) };
-                    lista.Add(wiersz);
-                    tabela.Rows.Add(wiersz);
+                    if (lista[j][0] == godzina.ToString())
+                    {
+                        spr_h = 1;
+                    }
+                }
+                if(spr_h == 0)
+                {
+                    w = tabela.NewRow();
+                    w["dostepna godzina"] = godzina.ToString() + ":00";
+                    tabela.Rows.Add(w);
                 }
                 godzina++;
-                //lista.Add(wiersz);
-                //i++;
             }
-            adapter.Fill(tabela);
-            zrodlo.DataSource = tabela;
-            dataGridView1.DataSource = zrodlo;
-            adapter.Update(tabela);
-            //adapter.Fill(tabela);
-            //zrodlo.DataSource = tabela;
-            //dataGridView1.DataSource = zrodlo;
-            //adapter.Update(tabela);
+
+            DataView widok = new DataView(tabela);
+            dataGridView1.DataSource = widok;
 
             connection.Close();
         }
-
-        //funkcja = (string data) => { return 1; };
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -220,7 +234,6 @@ namespace zadanie4
         {
             if (textBox3.Text != "")
             {
-                //wypelnij_tabele_lekarzami();
                 label4.Visible = true;
                 textBox4.Visible = true;
                 button4.Visible = true;
@@ -228,7 +241,6 @@ namespace zadanie4
             }
             else
             {
-                // wypelnij_tabele_pacjentami();
                 label4.Visible = false;
                 textBox4.Visible = false;
                 button4.Visible = false;
@@ -237,7 +249,16 @@ namespace zadanie4
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            string data = textBox3.Text;
+            string rok = "" + data[6] + data[7] + data[8] + data[9];
+            string miesiac = "" + data[3] + data[4];
+            string dzien = "" + data[0] + data[1];
+            string nowa_data = rok + "-" + miesiac + "-" + dzien;
+            nowa_data = nowa_data + " " + textBox4.Text + ":00";
+            MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+            polaczenie.dodaj_wizyte(textBox1.Text, textBox2.Text, nowa_data);
+            System.Windows.Forms.MessageBox.Show("Dodano wizyte");
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
