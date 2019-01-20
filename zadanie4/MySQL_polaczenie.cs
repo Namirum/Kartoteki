@@ -138,6 +138,45 @@ namespace zadanie4
             }
         }
 
+        public int sprawdz_dostepnosc_godziny(string id_lekarza, string data, string godzina)
+        {
+            string zapytanie = "select id_lekarza, data_wizyty from wizyta;"; ;
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            //MySqlDataAdapter adapter = new MySqlDataAdapter();
+            int spr = 0;
+
+            List<string[]> lista = new List<string[]>();
+
+            connection.Open();
+
+            dane = komenda.ExecuteReader();
+            int i = 0;
+            while (dane.Read())
+            {
+                string[] wiersz = { dane.GetString(0), dane.GetString(1) };
+                lista.Add(wiersz);
+                if (lista[i][1] == (data + " " + godzina+":00"))
+                {
+                    spr = 1;
+                    break;
+                }
+            
+                //Console.WriteLine("{0} {1}", lista[i][0], lista[i][1]);
+                //Console.WriteLine(data + " " + godzina + ":00");
+                i++;
+            }
+            connection.Close();
+            if (spr == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public int czy_login_dostepny()
         {
             return 0;

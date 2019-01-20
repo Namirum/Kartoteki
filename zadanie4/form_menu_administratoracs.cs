@@ -24,5 +24,13 @@ namespace zadanie4
             zarzadzaj.ShowDialog();
             this.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            form_zarzadzanie_wizytami zarzadzaj = new form_zarzadzanie_wizytami();
+            this.Hide();
+            zarzadzaj.ShowDialog();
+            this.Show();
+        }
     }
 }

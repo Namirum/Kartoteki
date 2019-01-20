@@ -59,6 +59,12 @@
     <Compile Include="Edytuj_konto.Designer.cs">
       <DependentUpon>Edytuj_konto.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_dodaj_wizyte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_dodaj_wizyte.Designer.cs">
+      <DependentUpon>form_dodaj_wizyte.cs</DependentUpon>
+    </Compile>
     <Compile Include="form_edytuj_wprowadz_nowe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,12 @@
     <Compile Include="form_zaloguj_pacjenta.Designer.cs">
       <DependentUpon>form_zaloguj_pacjenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_zarzadzanie_wizytami.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_zarzadzanie_wizytami.Designer.cs">
+      <DependentUpon>form_zarzadzanie_wizytami.cs</DependentUpon>
+    </Compile>
     <Compile Include="Konta.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="menu_administratora.cs" />
@@ -101,6 +113,7 @@
     <Compile Include="Usun_konto.Designer.cs">
       <DependentUpon>Usun_konto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Wizyta.cs" />
     <Compile Include="Zarzadzanie_kontami.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edytuj_konto.resx">
       <DependentUpon>Edytuj_konto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_dodaj_wizyte.resx">
+      <DependentUpon>form_dodaj_wizyte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form_edytuj_wprowadz_nowe.resx">
       <DependentUpon>form_edytuj_wprowadz_nowe.cs</DependentUpon>
@@ -127,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form_zaloguj_pacjenta.resx">
       <DependentUpon>form_zaloguj_pacjenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_zarzadzanie_wizytami.resx">
+      <DependentUpon>form_zarzadzanie_wizytami.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
