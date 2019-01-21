@@ -25,7 +25,14 @@ namespace zadanie4
         private void button1_Click(object sender, EventArgs e)
         {
             MySQL_polaczenie polaczenie = new MySQL_polaczenie();
-            polaczenie.dodaj_konto_pacjenta(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+            if(polaczenie.czy_imie_nazwisko(textBox3.Text) == 0 && polaczenie.czy_imie_nazwisko(textBox4.Text) == 0)
+            {
+                polaczenie.dodaj_konto_pacjenta(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Nieprawidlowe dane");
+            }
         }
     }
 }

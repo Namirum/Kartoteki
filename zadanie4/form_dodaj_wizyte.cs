@@ -100,7 +100,7 @@ namespace zadanie4
             Func<string> zamien = () => { return (data[6].ToString() + data[7].ToString() + data[8].ToString() + data[9].ToString() + "-" + data[3].ToString() + data[4].ToString() + "-" + data[0].ToString() + data[1].ToString()); };
             
             string nowa_data = zamien();
-            Console.WriteLine(nowa_data);
+            //Console.WriteLine(nowa_data);
             database = "kartoteki";
             uid = "root";
             password = "Szkarlat666";
@@ -180,12 +180,27 @@ namespace zadanie4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text != "")
+            MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+            if(textBox1.Text != "" && polaczenie.czy_int(textBox1.Text) == 0 )
             {
-                wypelnij_tabele_lekarzami();
-                label2.Visible = true;
-                textBox2.Visible = true;
-                button2.Visible = true;
+                label5.Text = "";
+                if (polaczenie.czy_id_istnieje_pacjent(textBox1.Text) == 0)
+                {
+                    wypelnij_tabele_lekarzami();
+                    label2.Visible = true;
+                    textBox2.Visible = true;
+                    button2.Visible = true;
+                    
+                }
+                else
+                {
+                    label5.Text = "Nieprawidlowe id";
+                    wypelnij_tabele_pacjentami();
+                    label2.Visible = false;
+                    textBox2.Visible = false;
+                    button2.Visible = false;
+                    
+                }
             }
             else
             {
@@ -193,7 +208,9 @@ namespace zadanie4
                 label2.Visible = false;
                 textBox2.Visible = false;
                 button2.Visible = false;
+                label5.Text = "Nieprawidlowe id";
             }
+            
             
         }
 
@@ -204,19 +221,31 @@ namespace zadanie4
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text != "")
+            MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+            if (textBox2.Text != "" && polaczenie.czy_int(textBox2.Text) == 0)
             {
-                //wypelnij_tabele_lekarzami();
-                label3.Visible = true;
-                textBox3.Visible = true;
-                button3.Visible = true;
+                    label5.Text = "";
+                if (polaczenie.czy_id_istnieje_lekarz(textBox2.Text) == 0)
+                {
+                    //wypelnij_tabele_lekarzami();
+                        label3.Visible = true;
+                        textBox3.Visible = true;
+                        button3.Visible = true;
+                    }
+                    else
+                    {
+                        // wypelnij_tabele_pacjentami();
+                        label3.Visible = false;
+                        textBox3.Visible = false;
+                        button3.Visible = false;
+                    }
             }
             else
             {
-               // wypelnij_tabele_pacjentami();
                 label3.Visible = false;
                 textBox3.Visible = false;
                 button3.Visible = false;
+                label5.Text = "Nieprawidlowe id";
             }
         }
 
@@ -232,11 +261,13 @@ namespace zadanie4
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text != "")
+            MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+            if (textBox3.Text != "" && (polaczenie.czy_data(textBox3.Text) == 0))
             {
                 label4.Visible = true;
                 textBox4.Visible = true;
                 button4.Visible = true;
+                label5.Text = "";
                 wypelnij_tabele_datami(textBox3.Text, textBox2.Text);
             }
             else
@@ -244,6 +275,7 @@ namespace zadanie4
                 label4.Visible = false;
                 textBox4.Visible = false;
                 button4.Visible = false;
+                label5.Text = "Nieprawidlowa data";
             }
         }
 
@@ -266,15 +298,24 @@ namespace zadanie4
             if (textBox4.Text != "")
             {
                 MySQL_polaczenie sprawdz = new MySQL_polaczenie();
-                int spr = sprawdz.sprawdz_dostepnosc_godziny(textBox2.Text, textBox3.Text, textBox4.Text);
-                if ( spr == 0)
+                if(0 == sprawdz.czy_godzina(textBox4.Text))
                 {
-                    button5.Visible = true;
+                    int spr = sprawdz.sprawdz_dostepnosc_godziny(textBox2.Text, textBox3.Text, textBox4.Text);
+                    if (spr == 0)
+                    {
+                        button5.Visible = true;
+                        label5.Text = "";
+                    }
+                    else
+                    {
+                        label5.Text = "Ta godzina nie jest dostepna";
+                    }
                 }
                 else
                 {
-                    label5.Text = "Ta godzina nie jest dostepna";
+                    label5.Text = "Nieprawdilowa godzina";
                 }
+                
                 
             }
             else

@@ -121,20 +121,26 @@ namespace zadanie4
             if (wybor == 3)
             {
                 zapytanie = "update pacjent set imie = '" + nowa_dana + "' where id_pacjenta = " + id_pacjenta + ";";
-                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
-                MySqlDataReader dane;
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                connection.Close();
+                if (czy_imie_nazwisko(nowa_dana) == 0)
+                {
+                    MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                    MySqlDataReader dane;
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    connection.Close();
+                }
             }
             if (wybor == 4)
             {
                 zapytanie = "update pacjent set nazwisko = '" + nowa_dana + "' where id_pacjenta = " + id_pacjenta + ";";
-                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
-                MySqlDataReader dane;
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                connection.Close();
+                if (czy_imie_nazwisko(nowa_dana) == 0)
+                {
+                    MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                    MySqlDataReader dane;
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    connection.Close();
+                }
             }
         }
 
@@ -209,58 +215,92 @@ namespace zadanie4
             if (wybor == 1)
             {
                 zapytanie = "update wizyta set id_pacjenta = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
-                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
-                MySqlDataReader dane;
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                connection.Close();
+                if(czy_int(nowa_dana)==0 && czy_id_istnieje_pacjent(nowa_dana) == 0)
+                {
+                    MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                    MySqlDataReader dane;
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    connection.Close();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Nieprawidlowe id");
+                }
+                
             }
             if (wybor == 2)
             {
                 zapytanie = "update wizyta set id_lekarza = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
-                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
-                MySqlDataReader dane;
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                connection.Close();
+                if (czy_int(nowa_dana) == 0 && czy_id_istnieje_lekarz(nowa_dana) == 0)
+                {
+                    MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                    MySqlDataReader dane;
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    connection.Close();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Nieprawidlowe id");
+                }
             }
             if (wybor == 3)
             {
                 zapytanie = "select hour(data_wizyty) from wizyta where id_wizyty = " + id_wizyty + ";";
-                string godzina;
-                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
-                MySqlDataReader dane;
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                dane.Read();
-                godzina = dane.GetString(0);
-                connection.Close();
+                if (czy_data(nowa_dana) == 0 )
+                {
+                    string godzina;
+                    string rok = "" + nowa_dana[6] + nowa_dana[7] + nowa_dana[8] + nowa_dana[9];
+                    string miesiac = "" + nowa_dana[3] + nowa_dana[4];
+                    string dzien = "" + nowa_dana[0] + nowa_dana[1];
+                    string nowa_data = rok + "-" + miesiac + "-" + dzien;
+                    MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                    MySqlDataReader dane;
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    dane.Read();
+                    godzina = dane.GetString(0);
+                    connection.Close();
 
-                nowa_dana = nowa_dana + " " + godzina + ":00:00";
-                zapytanie = "update wizyta set data_wizyty = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
-                komenda = new MySqlCommand(zapytanie, connection);
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                connection.Close();
-            }
+                    nowa_data = nowa_data + " " + godzina + ":00:00";
+                    nowa_dana = nowa_dana + " " + godzina + ":00:00";
+                    zapytanie = "update wizyta set data_wizyty = '" + nowa_data + "' where id_wizyty = " + id_wizyty + ";";
+                    komenda = new MySqlCommand(zapytanie, connection);
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    connection.Close();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Nieprawidlowa data");
+                }
+        }
             if (wybor == 4)
             {
                 zapytanie = "select date_format(data_wizyty, '%Y-%m-%d') from wizyta where id_wizyty = " + id_wizyty + ";";
-                string data;
-                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
-                MySqlDataReader dane;
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                dane.Read();
-                data = dane.GetString(0);
-                connection.Close();
+                if (czy_godzina(nowa_dana) == 0)
+                {
+                    string data;
+                    MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                    MySqlDataReader dane;
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    dane.Read();
+                    data = dane.GetString(0);
+                    connection.Close();
 
-                nowa_dana = data + " " + nowa_dana;
-                zapytanie = "update wizyta set data_wizyty = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
-                komenda = new MySqlCommand(zapytanie, connection);
-                connection.Open();
-                dane = komenda.ExecuteReader();
-                connection.Close();
+                    nowa_dana = data + " " + nowa_dana;
+                    zapytanie = "update wizyta set data_wizyty = '" + nowa_dana + "' where id_wizyty = " + id_wizyty + ";";
+                    komenda = new MySqlCommand(zapytanie, connection);
+                    connection.Open();
+                    dane = komenda.ExecuteReader();
+                    connection.Close();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Nieprawidlowa godzina");
+                }
             }
         }
 
@@ -332,6 +372,206 @@ namespace zadanie4
             }
             connection.Close();
             return 0;
+        }
+
+        public int czy_data(string data)
+        {
+            int dl = data.Length;
+            if(dl == 10 && data[0]<58 && data[0]>47 && data[1] < 58 && data[1] > 47 && data[3] < 58 && data[3] > 47 && data[4] < 58 && data[4] > 47)
+            {
+                if (data[7] < 58 && data[7] > 47 && data[6] < 58 && data[6] > 47 && data[2] == '.' )
+                {
+                    if (data[8] < 58 && data[8] > 47 && data[9] < 58 && data[9] > 47 && data[5] == '.')
+                    {
+                        return 0;
+                    }
+                }
+            }
+            return 1;
+        }
+
+        public int czy_godzina(string data)
+        {
+            int dl = data.Length;
+            if (dl == 5 && data[0] < 58 && data[0] > 47 && data[1] < 58 && data[1] > 47 && data[3] < 58 && data[3] > 47 && data[4] < 58 && data[4] > 47 && data[2] == ':')
+            {
+                return 0;
+            }
+            return 1;
+        }
+
+        public int czy_int(string dane)
+        {
+            int dl = dane.Length;
+            for(int i=0; i<dl; i++)
+            {
+                if(dane[i]<48 || dane[i]>57)
+                {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+
+        public int czy_imie_nazwisko(string dane)
+        {
+            int dl = dane.Length;
+            for(int i=1; i<dl; i++)
+            {
+                if(dane[i]<97 || dane[i]>122)
+                {
+                    return 1;
+                }
+            }
+            if(dane[0]<65 || dane[0]>90)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+        public int czy_id_istnieje_pacjent(string id_pacjenta)
+        {
+            MySqlConnection connection;
+            string server;
+            string database;
+            string uid;
+            string password;
+            server = "localhost";
+
+            database = "kartoteki";
+            uid = "root";
+            password = "Szkarlat666";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            connection = new MySqlConnection(connectionString);
+            connection.Open();
+            string zapytanie = "select id_pacjenta from pacjent;";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            dane = komenda.ExecuteReader();
+
+            List<string[]> lista = new List<string[]>();
+            while (dane.Read())
+            {
+                if(dane.GetInt32(0).ToString() == id_pacjenta)
+                {
+                    connection.Close();
+                    return 0;
+                }
+            }
+            connection.Close();
+            return 1;
+        }
+
+        public int czy_id_istnieje_wizyta(string id_wizyty)
+        {
+            MySqlConnection connection;
+            string server;
+            string database;
+            string uid;
+            string password;
+            server = "localhost";
+
+            database = "kartoteki";
+            uid = "root";
+            password = "Szkarlat666";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            connection = new MySqlConnection(connectionString);
+            connection.Open();
+            string zapytanie = "select id_wizyty from wizyta;";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            dane = komenda.ExecuteReader();
+
+            List<string[]> lista = new List<string[]>();
+            while (dane.Read())
+            {
+                if (dane.GetInt32(0).ToString() == id_wizyty)
+                {
+                    connection.Close();
+                    return 0;
+                }
+            }
+            connection.Close();
+            return 1;
+        }
+
+        public int czy_id_istnieje_zalecenie(string id_zalecenia)
+        {
+            MySqlConnection connection;
+            string server;
+            string database;
+            string uid;
+            string password;
+            server = "localhost";
+
+            database = "kartoteki";
+            uid = "root";
+            password = "Szkarlat666";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            connection = new MySqlConnection(connectionString);
+            connection.Open();
+            string zapytanie = "select id_zalecenia from zalecenie;";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            dane = komenda.ExecuteReader();
+
+            List<string[]> lista = new List<string[]>();
+            while (dane.Read())
+            {
+                if (dane.GetInt32(0).ToString() == id_zalecenia)
+                {
+                    connection.Close();
+                    return 0;
+                }
+            }
+            connection.Close();
+            return 1;
+        }
+
+        public int czy_id_istnieje_lekarz(string id_lekarza)
+        {
+            MySqlConnection connection;
+            string server;
+            string database;
+            string uid;
+            string password;
+            server = "localhost";
+
+            database = "kartoteki";
+            uid = "root";
+            password = "Szkarlat666";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+            connection = new MySqlConnection(connectionString);
+            connection.Open();
+            string zapytanie = "select id_lekarza from lekarz;";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            dane = komenda.ExecuteReader();
+
+            List<string[]> lista = new List<string[]>();
+            while (dane.Read())
+            {
+                if (dane.GetInt32(0).ToString() == id_lekarza)
+                {
+                    connection.Close();
+                    return 0;
+                }
+            }
+            connection.Close();
+            return 1;
         }
     }
 }

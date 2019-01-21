@@ -58,12 +58,19 @@ namespace zadanie4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text != "")
+            MySQL_polaczenie sprawdz = new MySQL_polaczenie();
+            if (textBox1.Text != "" && 0 == sprawdz.czy_id_istnieje_wizyta(textBox1.Text))
             {
+                label2.Text = "";
                 MySQL_polaczenie usun = new MySQL_polaczenie();
                 usun.usun_wizyte(textBox1.Text);
+                System.Windows.Forms.MessageBox.Show("Usunieto wizyte");
                 wypelnij_tabele();
-            }  
+            } 
+            else
+            {
+                label2.Text = "Nieprawidlowe id";
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

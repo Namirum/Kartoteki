@@ -89,9 +89,11 @@ namespace zadanie4
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            MySQL_polaczenie connection = new MySQL_polaczenie();
+            if (textBox1.Text == "" )
             {
                 wypelnij_tabele();
+                label4.Text = "Nieprawidlowe id";
                 label2.Visible = false;
                 label3.Visible = false;
                 button2.Visible = false;
@@ -103,12 +105,29 @@ namespace zadanie4
             }
             else
             {
-                wypelnij_tabele(textBox1.Text);
-                label2.Visible = true;
-                button2.Visible = true;
-                button3.Visible = true;
-                button4.Visible = true;
-                button5.Visible = true;
+                if( connection.czy_int(textBox1.Text) == 0 && connection.czy_id_istnieje_wizyta(textBox1.Text) == 0)
+                {
+                    wypelnij_tabele(textBox1.Text);
+                    label4.Text = "";
+                    label2.Visible = true;
+                    button2.Visible = true;
+                    button3.Visible = true;
+                    button4.Visible = true;
+                    button5.Visible = true;
+                }     
+                else
+                {
+                    wypelnij_tabele();
+                    label4.Text = "Nieprawidlowe id";
+                    label2.Visible = false;
+                    label3.Visible = false;
+                    button2.Visible = false;
+                    button3.Visible = false;
+                    button4.Visible = false;
+                    button5.Visible = false;
+                    textBox2.Visible = false;
+                    button6.Visible = false;
+                }
             }
         }
 
@@ -134,7 +153,7 @@ namespace zadanie4
         {
             label3.Visible = true;
             button6.Visible = true;
-            label3.Text = "Wprowadz nowa date (rrrr-mm-dd)";
+            label3.Text = "Wprowadz nowa date (dd.mm.rrrr)";
             textBox2.Visible = true;
             wybor = 3;
         }
@@ -151,8 +170,10 @@ namespace zadanie4
                 string nowa_dana = textBox2.Text;
                 string id_wizyty = textBox1.Text;
                 MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+                
                 polaczenie.edytuj_wizyte(id_wizyty, nowa_dana, wybor);
             }
+            wypelnij_tabele();
         }
 
         private void button5_Click_1(object sender, EventArgs e)

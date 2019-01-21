@@ -35,7 +35,8 @@ namespace zadanie4
                 string login = textBox1.Text;
                 string haslo = textBox2.Text;
                 MySQL_polaczenie polaczenie = new MySQL_polaczenie();
-                spr = polaczenie.zaloguj_administratora(login, haslo);
+                spr = polaczenie.zaloguj_pacjenta(login, haslo);
+                //Console.WriteLine(spr);
                 if (spr == 0)
                 {
                     this.label3.Text = "Nieprawidlowy login lub haslo";

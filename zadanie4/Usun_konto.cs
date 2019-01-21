@@ -64,8 +64,15 @@ namespace zadanie4
             Int32.TryParse(textBox1.Text, out wynik); //(textBox1.Text, out wynik);
             int id_pacjenta = wynik;
             MySQL_polaczenie polaczenie = new MySQL_polaczenie();
-            polaczenie.usun_konto_pacjenta(wynik);
-            wypelnij_tabele();
+            if (textBox1.Text != "" && polaczenie.czy_int(textBox1.Text) == 00 && 0 == polaczenie.czy_id_istnieje_pacjent(textBox1.Text))
+            {
+                polaczenie.usun_konto_pacjenta(wynik);
+                wypelnij_tabele();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Nieprawidlowe id");
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
