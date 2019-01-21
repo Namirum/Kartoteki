@@ -11,14 +11,31 @@ using MySql.Data.MySqlClient;
 
 namespace zadanie4
 {
-    public partial class form_edytuj_wizyte : Form
+    public partial class form_edytuj_zalecenie : Form
     {
         int wybor;
-
-        public form_edytuj_wizyte()
+        public form_edytuj_zalecenie()
         {
             InitializeComponent();
             wypelnij_tabele();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            label3.Visible = true;
+            button6.Visible = true;
+            label3.Text = "Wprowadz nowe id pacjenta";
+            textBox2.Visible = true;
+            wybor = 1;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label3.Visible = true;
+            button6.Visible = true;
+            label3.Text = "Wprowadz nowa tresc zalecenia";
+            textBox2.Visible = true;
+            wybor = 2;
         }
 
         public void wypelnij_tabele()
@@ -39,7 +56,7 @@ namespace zadanie4
 
             connection = new MySqlConnection(connectionString);
             connection.Open();
-            string zapytanie = "select * from wizyta;";
+            string zapytanie = "select * from zalecenie;";
             MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             BindingSource zrodlo = new BindingSource();
@@ -53,7 +70,7 @@ namespace zadanie4
             connection.Close();
         }
 
-        public void wypelnij_tabele(string id_wizyty)
+        public void wypelnij_tabele(string id_zalecenia)
         {
             MySqlConnection connection;
             string server;
@@ -71,7 +88,7 @@ namespace zadanie4
 
             connection = new MySqlConnection(connectionString);
             connection.Open();
-            string zapytanie = "select * from wizyta where id_wizyty = " + id_wizyty + ";";
+            string zapytanie = "select * from zalecenie where id_zalecenia = " + id_zalecenia + ";";
             MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
             //MySqlDataReader dane = komenda.ExecuteReader();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -86,7 +103,6 @@ namespace zadanie4
             connection.Close();
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
@@ -96,8 +112,6 @@ namespace zadanie4
                 label3.Visible = false;
                 button2.Visible = false;
                 button3.Visible = false;
-                button4.Visible = false;
-                button5.Visible = false;
                 textBox2.Visible = false;
                 button6.Visible = false;
             }
@@ -107,41 +121,7 @@ namespace zadanie4
                 label2.Visible = true;
                 button2.Visible = true;
                 button3.Visible = true;
-                button4.Visible = true;
-                button5.Visible = true;
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            label3.Visible = true;
-            button6.Visible = true;
-            label3.Text = "Wprowadz nowe id pacjenta";
-            textBox2.Visible = true;
-            wybor = 1;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            label3.Visible = true;
-            button6.Visible = true;
-            label3.Text = "Wprowadz nowe id lekarza";
-            textBox2.Visible = true;
-            wybor = 2;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            label3.Visible = true;
-            button6.Visible = true;
-            label3.Text = "Wprowadz nowa date (rrrr-mm-dd)";
-            textBox2.Visible = true;
-            wybor = 3;
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -149,49 +129,10 @@ namespace zadanie4
             if (textBox2.Text != "")
             {
                 string nowa_dana = textBox2.Text;
-                string id_wizyty = textBox1.Text;
+                string id_zalecenia = textBox1.Text;
                 MySQL_polaczenie polaczenie = new MySQL_polaczenie();
-                polaczenie.edytuj_wizyte(id_wizyty, nowa_dana, wybor);
+                polaczenie.edytuj_zalecenie(id_zalecenia, nowa_dana, wybor);
             }
-        }
-
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-            label3.Visible = true;
-            button6.Visible = true;
-            label3.Text = "Wprowadz nowa godzine (hh:mm)";
-            textBox2.Visible = true;
-            wybor = 4;
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

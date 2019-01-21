@@ -11,9 +11,9 @@ using MySql.Data.MySqlClient;
 
 namespace zadanie4
 {
-    public partial class form_usun_wizyte : Form
+    public partial class form_usun_zalecenie : Form
     {
-        public form_usun_wizyte()
+        public form_usun_zalecenie()
         {
             InitializeComponent();
             wypelnij_tabele();
@@ -37,7 +37,7 @@ namespace zadanie4
 
             connection = new MySqlConnection(connectionString);
             connection.Open();
-            string zapytanie = "select * from wizyta;";
+            string zapytanie = "select * from zalecenie;";
             MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             BindingSource zrodlo = new BindingSource();
@@ -51,27 +51,17 @@ namespace zadanie4
             connection.Close();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text != "")
+            if (textBox1.Text != "")
             {
                 MySQL_polaczenie usun = new MySQL_polaczenie();
-                usun.usun_wizyte(textBox1.Text);
+                usun.usun_zalecenie(textBox1.Text);
                 wypelnij_tabele();
-            }  
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

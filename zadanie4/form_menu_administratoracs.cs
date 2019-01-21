@@ -32,5 +32,13 @@ namespace zadanie4
             zarzadzaj.ShowDialog();
             this.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            form_zarzadzanie_zaleceniami zarzadzaj = new form_zarzadzanie_zaleceniami();
+            this.Hide();
+            zarzadzaj.ShowDialog();
+            this.Show();
+        }
     }
 }

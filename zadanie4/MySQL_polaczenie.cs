@@ -263,5 +263,48 @@ namespace zadanie4
                 connection.Close();
             }
         }
+
+        public void dodaj_zalecenie(string id_pacjenta, string zalecenie)
+        {
+            string zapytanie = "insert into zalecenie (id_zalecenia, id_pacjenta, tresc_zalecenia) values ( 0, '" + id_pacjenta + "', '" + zalecenie + "');";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            connection.Open();
+            dane = komenda.ExecuteReader();
+            connection.Close();
+        }
+
+        public void usun_zalecenie(string id_zalecenia)
+        {
+            string zapytanie = "delete from zalecenie where id_zalecenia = " + id_zalecenia+ ";";
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+            connection.Open();
+            dane = komenda.ExecuteReader();
+            connection.Close();
+        }
+
+        public void edytuj_zalecenie(string id_zalecenia, string nowa_dana, int wybor)
+        {
+            string zapytanie;
+            if (wybor == 1)
+            {
+                zapytanie = "update zalecenie set id_pacjenta = '" + nowa_dana + "' where id_zalecenia = " + id_zalecenia + ";";
+                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                MySqlDataReader dane;
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                connection.Close();
+            }
+            if (wybor == 2)
+            {
+                zapytanie = "update zalecenie set tresc_zalecenia = '" + nowa_dana + "' where id_zalecenia = " + id_zalecenia + ";";
+                MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+                MySqlDataReader dane;
+                connection.Open();
+                dane = komenda.ExecuteReader();
+                connection.Close();
+            }
+        }
     }
 }

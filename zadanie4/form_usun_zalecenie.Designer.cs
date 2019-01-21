@@ -1,6 +1,6 @@
 ﻿namespace zadanie4
 {
-    partial class form_usun_wizyte
+    partial class form_usun_zalecenie
     {
         /// <summary>
         /// Required designer variable.
@@ -40,54 +40,52 @@
             this.button1.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(26, 93);
+            this.button1.Location = new System.Drawing.Point(29, 93);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 32);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 11;
             this.button1.Text = "Usun";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(26, 55);
+            this.textBox1.Location = new System.Drawing.Point(29, 55);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TabIndex = 10;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Location = new System.Drawing.Point(9, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 18);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Wprowadz id wizyty do usuniecia";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Size = new System.Drawing.Size(248, 18);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Wprowadz id zalecenia do usuniecia";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(235, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(263, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(535, 377);
-            this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // form_usun_wizyte
+            // form_usun_zalecenie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(782, 407);
+            this.ClientSize = new System.Drawing.Size(827, 407);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "form_usun_wizyte";
-            this.Text = "form_usun_wizyte";
+            this.Name = "form_usun_zalecenie";
+            this.Text = "form_usun_zalecenie";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

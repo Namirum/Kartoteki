@@ -65,6 +65,12 @@
     <Compile Include="form_dodaj_wizyte.Designer.cs">
       <DependentUpon>form_dodaj_wizyte.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_dodaj_zalecenie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_dodaj_zalecenie.Designer.cs">
+      <DependentUpon>form_dodaj_zalecenie.cs</DependentUpon>
+    </Compile>
     <Compile Include="form_edytuj_wizyte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,12 @@
     </Compile>
     <Compile Include="form_edytuj_wprowadz_nowe.Designer.cs">
       <DependentUpon>form_edytuj_wprowadz_nowe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form_edytuj_zalecenie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_edytuj_zalecenie.Designer.cs">
+      <DependentUpon>form_edytuj_zalecenie.cs</DependentUpon>
     </Compile>
     <Compile Include="form_menu_administratoracs.cs">
       <SubType>Form</SubType>
@@ -95,6 +107,12 @@
     <Compile Include="form_usun_wizyte.Designer.cs">
       <DependentUpon>form_usun_wizyte.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_usun_zalecenie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_usun_zalecenie.Designer.cs">
+      <DependentUpon>form_usun_zalecenie.cs</DependentUpon>
+    </Compile>
     <Compile Include="form_zaloguj_administratora.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +130,12 @@
     </Compile>
     <Compile Include="form_zarzadzanie_wizytami.Designer.cs">
       <DependentUpon>form_zarzadzanie_wizytami.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form_zarzadzanie_zaleceniami.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_zarzadzanie_zaleceniami.Designer.cs">
+      <DependentUpon>form_zarzadzanie_zaleceniami.cs</DependentUpon>
     </Compile>
     <Compile Include="Konta.cs" />
     <Compile Include="Menu.cs" />
@@ -141,11 +165,17 @@
     <EmbeddedResource Include="form_dodaj_wizyte.resx">
       <DependentUpon>form_dodaj_wizyte.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form_dodaj_zalecenie.resx">
+      <DependentUpon>form_dodaj_zalecenie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form_edytuj_wizyte.resx">
       <DependentUpon>form_edytuj_wizyte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form_edytuj_wprowadz_nowe.resx">
       <DependentUpon>form_edytuj_wprowadz_nowe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_edytuj_zalecenie.resx">
+      <DependentUpon>form_edytuj_zalecenie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form_menu_administratoracs.resx">
       <DependentUpon>form_menu_administratoracs.cs</DependentUpon>
@@ -156,6 +186,9 @@
     <EmbeddedResource Include="form_usun_wizyte.resx">
       <DependentUpon>form_usun_wizyte.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form_usun_zalecenie.resx">
+      <DependentUpon>form_usun_zalecenie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form_zaloguj_administratora.resx">
       <DependentUpon>form_zaloguj_administratora.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form_zarzadzanie_wizytami.resx">
       <DependentUpon>form_zarzadzanie_wizytami.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_zarzadzanie_zaleceniami.resx">
+      <DependentUpon>form_zarzadzanie_zaleceniami.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
