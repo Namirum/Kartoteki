@@ -40,5 +40,21 @@ namespace zadanie4
             zarzadzaj.ShowDialog();
             this.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            form_statystyka_zachorowan statystyka = new form_statystyka_zachorowan();
+            this.Hide();
+            statystyka.ShowDialog();
+            this.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            form_statystyka_lekarzy statystyka = new form_statystyka_lekarzy();
+            this.Hide();
+            statystyka.ShowDialog();
+            this.Show();
+        }
     }
 }
