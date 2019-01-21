@@ -71,6 +71,12 @@
     <Compile Include="form_dodaj_zalecenie.Designer.cs">
       <DependentUpon>form_dodaj_zalecenie.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_dostepnosc_lekarzy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_dostepnosc_lekarzy.Designer.cs">
+      <DependentUpon>form_dostepnosc_lekarzy.cs</DependentUpon>
+    </Compile>
     <Compile Include="form_edytuj_wizyte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,18 @@
     <Compile Include="form_edytuj_zalecenie.Designer.cs">
       <DependentUpon>form_edytuj_zalecenie.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_historia_wizyt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_historia_wizyt.Designer.cs">
+      <DependentUpon>form_historia_wizyt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form_historia_zalecen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_historia_zalecen.Designer.cs">
+      <DependentUpon>form_historia_zalecen.cs</DependentUpon>
+    </Compile>
     <Compile Include="form_menu_administratoracs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +118,12 @@
     </Compile>
     <Compile Include="form_menu_glowne.Designer.cs">
       <DependentUpon>form_menu_glowne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form_menu_pacjenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_menu_pacjenta.Designer.cs">
+      <DependentUpon>form_menu_pacjenta.cs</DependentUpon>
     </Compile>
     <Compile Include="form_statystyka_lekarzy.cs">
       <SubType>Form</SubType>
@@ -180,6 +204,9 @@
     <EmbeddedResource Include="form_dodaj_zalecenie.resx">
       <DependentUpon>form_dodaj_zalecenie.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form_dostepnosc_lekarzy.resx">
+      <DependentUpon>form_dostepnosc_lekarzy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form_edytuj_wizyte.resx">
       <DependentUpon>form_edytuj_wizyte.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,11 +216,20 @@
     <EmbeddedResource Include="form_edytuj_zalecenie.resx">
       <DependentUpon>form_edytuj_zalecenie.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form_historia_wizyt.resx">
+      <DependentUpon>form_historia_wizyt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_historia_zalecen.resx">
+      <DependentUpon>form_historia_zalecen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form_menu_administratoracs.resx">
       <DependentUpon>form_menu_administratoracs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form_menu_glowne.resx">
       <DependentUpon>form_menu_glowne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_menu_pacjenta.resx">
+      <DependentUpon>form_menu_pacjenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form_statystyka_lekarzy.resx">
       <DependentUpon>form_statystyka_lekarzy.cs</DependentUpon>

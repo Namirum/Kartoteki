@@ -306,5 +306,32 @@ namespace zadanie4
                 connection.Close();
             }
         }
+
+        public int zaloguj_pacjenta(string login, string haslo)
+        {
+            string zapytanie = "select id_pacjenta, login, haslo from pacjent;"; ;
+            MySqlCommand komenda = new MySqlCommand(zapytanie, connection);
+            MySqlDataReader dane;
+
+            List<string[]> lista = new List<string[]>();
+
+            connection.Open();
+
+            dane = komenda.ExecuteReader();
+            int i = 0;
+            while (dane.Read())
+            {
+                string[] wiersz = { dane.GetInt32(0).ToString(), dane.GetString(1), dane.GetString(2) };
+                lista.Add(wiersz);
+                if (lista[i][1] == login && lista[i][2] == haslo)
+                {
+                    connection.Close();
+                    return dane.GetInt32(0);
+                }
+                i++;
+            }
+            connection.Close();
+            return 0;
+        }
     }
 }

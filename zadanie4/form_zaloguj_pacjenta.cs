@@ -26,5 +26,35 @@ namespace zadanie4
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int spr;
+            if(textBox1.Text != "" && textBox2.Text != "")
+            {
+                string login = textBox1.Text;
+                string haslo = textBox2.Text;
+                MySQL_polaczenie polaczenie = new MySQL_polaczenie();
+                spr = polaczenie.zaloguj_administratora(login, haslo);
+                if (spr == 0)
+                {
+                    this.label3.Text = "Nieprawidlowy login lub haslo";
+                }
+                else
+                {
+                    this.label3.Text = "";
+                    form_menu_pacjenta menu_pacjenta = new form_menu_pacjenta();
+                    menu_pacjenta.set_id(spr);
+                    this.Hide();
+                    menu_pacjenta.ShowDialog();
+                    this.Show();
+                }
+            }
+            else
+            {
+                this.label3.Text = "Nieprawidlowy login lub haslo";
+            }
+            
+        }
     }
 }
