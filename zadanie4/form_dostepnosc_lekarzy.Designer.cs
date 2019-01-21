@@ -50,6 +50,7 @@
             this.button3.Text = "Potwierdz";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label3
             // 
@@ -81,7 +82,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "Potwierdz";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
@@ -92,7 +93,6 @@
             this.label2.Size = new System.Drawing.Size(147, 18);
             this.label2.TabIndex = 11;
             this.label2.Text = "Wprowadz id lekarza";
-            this.label2.Visible = false;
             // 
             // textBox2
             // 
@@ -100,7 +100,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 10;
-            this.textBox2.Visible = false;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // dataGridView1
             // 
@@ -109,6 +109,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(421, 295);
             this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // form_dostepnosc_lekarzy
             // 

@@ -27,18 +27,22 @@ namespace zadanie4
         private void button1_Click(object sender, EventArgs e)
         {
             form_historia_wizyt historia = new form_historia_wizyt();
+            historia.set_id(id_pacjenta);
             historia.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             form_historia_zalecen historia = new form_historia_zalecen();
+            //Console.WriteLine(id_pacjenta.ToString());
+            historia.set_id(id_pacjenta);
             historia.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             form_dostepnosc_lekarzy dostepnosc = new form_dostepnosc_lekarzy();
+            
             dostepnosc.ShowDialog();
         }
 

@@ -50,6 +50,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(421, 295);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // form_historia_wizyt
             // 
@@ -61,6 +62,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "form_historia_wizyt";
             this.Text = "form_historia_wizyt";
+            this.Load += new System.EventHandler(this.form_historia_wizyt_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
